@@ -1,0 +1,58 @@
+export const reviews = [
+  {
+    id: 1,
+    name: 'Jennifer M.',
+    location: 'Katy, TX',
+    rating: 5,
+    date: 'March 2024',
+    text: 'ALV Roofing replaced our entire roof after hail damage. The crew showed up on time, completed the job in one day, and cleaned up everything. Mac walked us through the insurance claim — we paid almost nothing out of pocket. Absolutely recommend.',
+    service: 'Hail Damage Repair',
+  },
+  {
+    id: 2,
+    name: 'Robert T.',
+    location: 'Sugar Land, TX',
+    rating: 5,
+    date: 'January 2024',
+    text: "We've used ALV Roofing twice now. First time for a repair, second for a full replacement. Both times the quality was exceptional. They stand behind their work and are honest about what you actually need. No upselling.",
+    service: 'Roof Replacement',
+  },
+  {
+    id: 3,
+    name: 'Maria C.',
+    location: 'The Woodlands, TX',
+    rating: 5,
+    date: 'February 2024',
+    text: 'Called at 9pm about a bad leak during a storm. Mac answered personally and had a crew out the next morning. Temporary fix that night, permanent repair done within the week. GAF certified crew, premium materials. Worth every penny.',
+    service: 'Emergency Roof Repair',
+  },
+  {
+    id: 4,
+    name: 'David K.',
+    location: 'Pearland, TX',
+    rating: 5,
+    date: 'December 2023',
+    text: 'Got 4 quotes for a new roof. ALV was not the cheapest but they were far and away the most thorough in their inspection and honest about what we needed. 1 year later and zero issues. GAF Master Elite certification matters.',
+    service: 'Roof Replacement',
+  },
+  {
+    id: 5,
+    name: 'Sandra H.',
+    location: 'Cypress, TX',
+    rating: 5,
+    date: 'November 2023',
+    text: 'After Hurricane Beryl, I had 3 roofers ghost me after giving estimates. ALV showed up exactly when they said, completed the work in 2 days, and handled my State Farm claim directly. Best experience with a contractor I have ever had.',
+    service: 'Storm Damage Repair',
+  },
+  {
+    id: 6,
+    name: 'Carlos R.',
+    location: 'Spring, TX',
+    rating: 5,
+    date: 'October 2023',
+    text: 'Metal roof installation — these guys are pros. They answered every question I had about standing seam vs. exposed fastener, matched my HOA color requirements, and the finished product looks incredible. 50-year roof done right.',
+    service: 'Metal Roofing',
+  },
+] as const
+
+export type Review = typeof reviews[number]
