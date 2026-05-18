@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ScrambleText } from '@/components/ui/ScrambleText'
 
 interface CTABandProps {
   serviceName?: string
@@ -30,7 +31,7 @@ export default function CTABand({ serviceName, cityName }: CTABandProps) {
           href="tel:2543748326"
           className="block font-display text-5xl sm:text-6xl lg:text-7xl text-brand-red hover:text-brand-red-dark transition-colors duration-200 leading-none mb-10"
         >
-          254-FRG-TEAM
+          <ScrambleText text="254-FRG-TEAM" aria-label="254-FRG-TEAM" />
         </a>
 
         {/* Buttons */}

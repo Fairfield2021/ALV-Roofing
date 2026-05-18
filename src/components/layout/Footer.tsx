@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { services } from '@/data/services'
 import { cities } from '@/data/cities'
+import { ScrambleText } from '@/components/ui/ScrambleText'
 
 const TOP_CITIES = cities.slice(0, 12)
 const currentYear = new Date().getFullYear()
@@ -135,7 +136,7 @@ export default function Footer() {
                   href="tel:2543748326"
                   className="font-display text-xl text-white hover:text-brand-red tracking-wider transition-colors duration-150"
                 >
-                  254-FRG-TEAM
+                  <ScrambleText text="254-FRG-TEAM" aria-label="254-FRG-TEAM" />
                 </a>
               </li>
               <li>

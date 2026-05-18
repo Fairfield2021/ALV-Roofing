@@ -1,87 +1,11 @@
 'use client'
 
-import { useRef, useCallback, useEffect, useState } from 'react'
+import { useRef, useCallback, useEffect } from 'react'
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion'
 import Link from 'next/link'
 import SectionEyebrow from '@/components/ui/SectionEyebrow'
 import LeadForm from '@/components/sections/LeadForm'
-
-// ── Scramble character ───────────────────────────────────────────────────────
-const DIGITS = '0123456789'
-
-function ScrambleChar({ char }: { char: string }) {
-  const [digit, setDigit] = useState('0')
-  const [active, setActive] = useState(false)
-  const rafRef = useRef(0)
-  const lastRef = useRef(0)
-  const startRef = useRef(0)
-
-  const isLetter = /[a-zA-Z]/.test(char)
-
-  const onEnter = useCallback(() => {
-    if (!isLetter) return
-    setActive(true)
-    startRef.current = performance.now()
-    lastRef.current = 0
-
-    const tick = (now: number) => {
-      const elapsed = now - startRef.current
-      // After 560 ms settle on a final digit and stop
-      if (elapsed >= 560) {
-        setDigit(DIGITS[Math.floor(Math.random() * 10)])
-        return
-      }
-      if (now - lastRef.current >= 55) {
-        lastRef.current = now
-        setDigit(DIGITS[Math.floor(Math.random() * 10)])
-      }
-      rafRef.current = requestAnimationFrame(tick)
-    }
-    rafRef.current = requestAnimationFrame(tick)
-  }, [isLetter])
-
-  const onLeave = useCallback(() => {
-    if (!isLetter) return
-    cancelAnimationFrame(rafRef.current)
-    setActive(false)
-  }, [isLetter])
-
-  useEffect(() => () => cancelAnimationFrame(rafRef.current), [])
-
-  // Non-letters (spaces, hyphens) are inert
-  if (!isLetter) return <span aria-hidden="true">{char}</span>
-
-  return (
-    <span
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-      className="relative inline-block cursor-crosshair select-none"
-      style={{ perspective: '300px' }}
-    >
-      {/* Always in flow — drives width, invisible while digit is showing */}
-      <span
-        aria-hidden="true"
-        className="transition-opacity duration-[50ms]"
-        style={{ opacity: active ? 0 : 1 }}
-      >
-        {char}
-      </span>
-
-      {/* Digit overlay — absolutely positioned, zero layout impact */}
-      <motion.span
-        aria-hidden="true"
-        className="absolute inset-0 flex items-center justify-center text-brand-red"
-        animate={active
-          ? { opacity: 1, rotateX: 0, scale: 1 }
-          : { opacity: 0, rotateX: -60, scale: 0.6 }
-        }
-        transition={{ duration: 0.07, ease: 'easeOut' }}
-      >
-        {digit}
-      </motion.span>
-    </span>
-  )
-}
+import { ScrambleChar } from '@/components/ui/ScrambleText'
 
 interface HeroProps {
   eyebrow?: string
